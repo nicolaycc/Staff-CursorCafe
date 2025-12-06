@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button"
 interface NavigationProps {
   userRole: "empresa" | "empleado" | null
   onLogout: () => void
-  currentView: "feed" | "dashboard" | "profile"
-  onViewChange: (view: "feed" | "dashboard" | "profile") => void
+  currentView: "feed" | "dashboard" | "profile" | "results" | "status" | "chat"
+  onViewChange: (view: "feed" | "dashboard" | "profile" | "results" | "status" | "chat") => void
 }
 
 export function Navigation({ userRole, onLogout, currentView, onViewChange }: NavigationProps) {
@@ -30,22 +30,47 @@ export function Navigation({ userRole, onLogout, currentView, onViewChange }: Na
               Feed
             </Button>
             {userRole === "empresa" && (
-              <Button
-                onClick={() => onViewChange("dashboard")}
-                variant={currentView === "dashboard" ? "default" : "ghost"}
-                className="text-sm"
-              >
-                Dashboard
-              </Button>
+              <>
+                <Button
+                  onClick={() => onViewChange("dashboard")}
+                  variant={currentView === "dashboard" ? "default" : "ghost"}
+                  className="text-sm"
+                >
+                  Dashboard
+                </Button>
+                <Button
+                  onClick={() => onViewChange("results")}
+                  variant={currentView === "results" ? "default" : "ghost"}
+                  className="text-sm"
+                >
+                  Resultados
+                </Button>
+                <Button
+                  onClick={() => onViewChange("status")}
+                  variant={currentView === "status" ? "default" : "ghost"}
+                  className="text-sm"
+                >
+                  Estado en Vivo
+                </Button>
+              </>
             )}
             {userRole === "empleado" && (
-              <Button
-                onClick={() => onViewChange("profile")}
-                variant={currentView === "profile" ? "default" : "ghost"}
-                className="text-sm"
-              >
-                Mi Perfil
-              </Button>
+              <>
+                <Button
+                  onClick={() => onViewChange("profile")}
+                  variant={currentView === "profile" ? "default" : "ghost"}
+                  className="text-sm"
+                >
+                  Mi Perfil
+                </Button>
+                <Button
+                  onClick={() => onViewChange("chat")}
+                  variant={currentView === "chat" ? "default" : "ghost"}
+                  className="text-sm"
+                >
+                  Chat Soporte
+                </Button>
+              </>
             )}
           </div>
         </div>
